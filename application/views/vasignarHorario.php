@@ -87,7 +87,7 @@
 			                                <th class="text-center">Accion</th>
 			                            </tr>
 			                        </thead>
-			                        <tbody id="tblBody" class="text-center">
+			                        <tbody id="tblBody" class="text-justify">
 			                            
 			                        </tbody>
 
@@ -116,7 +116,7 @@
                 <div class="modal-header panel panel-heading">
 
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Asignaciones</h4>
+	                <h4 class="modal-title" id="myModalLabel" style="text-align: center;"></h4>
 
                 </div>
               
@@ -153,8 +153,8 @@
 
                  <div id="alert" style="display:none;" class="alert alert-danger"></div>
                 <div class="modal-footer" >
-                	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                	<a href="" type="button" class="btn btn-primary" id="btnGuardar">Guardar</a>
+                	<button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancelar">Cancelar</button>
+                	<button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
                 </div>
             
               </div>

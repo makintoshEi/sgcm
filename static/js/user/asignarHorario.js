@@ -5,23 +5,29 @@ $(function(){
 	var keywords= [] , keymedico =[];
 	var med_cod_global, flag=0;
 
+	var auto = function(response){
+		$("#med_ced").val(response.medico.med_ced);
+		$("#med_nom").val(response.medico.nombre);					
+		$("#med_dir").val(response.medico.med_dir);
+		$("#med_tel").val(response.medico.med_tel);
+		$("#med_eml").val(response.medico.med_eml);
+		med_cod_global = response.medico.med_cod;
+		//$('#med_ced').attr('disabled',true);
+	};
+
 	$('#med_ced').autocomplete({
 		source: keywords , 
 		select: function(){
 			
 			$.ajax({
-				url: "/misitio/cmedico/getMedicoByCed/",
+				url: "/sgcm/cmedico/getMedicoByCed/",
 				type: "POST",
 				data: {
 						"med_ced":$("#med_ced").val()
 					  },
 				dataType : "json",
 				success: function(response){
-					$("#med_nom").val(response.medico.nombre);					
-					$("#med_dir").val(response.medico.med_dir);
-					$("#med_tel").val(response.medico.med_tel);
-					$("#med_eml").val(response.medico.med_eml);
-					med_cod_global = response.medico.med_cod;
+					auto(response);
 				},
 			});
 
@@ -33,18 +39,14 @@ $(function(){
 		select: function(){
 			
 			$.ajax({
-				url: "/misitio/cmedico/getMedicoByNom/",
+				url: "/sgcm/cmedico/getMedicoByNom/",
 				type: "POST",
 				data: {
 						"med_nom":$("#med_nom").val()
 					  },
 				dataType : "json",
 				success: function(response){
-					$("#med_ced").val(response.medico.med_ced);					
-					$("#med_dir").val(response.medico.med_dir);
-					$("#med_tel").val(response.medico.med_tel);
-					$("#med_eml").val(response.medico.med_eml);
-					med_cod_global = response.medico.med_cod;
+					auto(response);
 				},
 			});
 
@@ -64,8 +66,8 @@ $(function(){
 	};
 
 
-	$.post("/misitio/cmedico/autocompletarCedMedico/",$.getCed);
-	$.post("/misitio/cmedico/autocompletarMedico/",$.getMed);
+	$.post("/sgcm/cmedico/autocompletarCedMedico/",$.getCed);
+	$.post("/sgcm/cmedico/autocompletarMedico/",$.getMed);
 
 	// ************************************************** END AUTOCOMPLETADO ***************************************
 
@@ -84,21 +86,21 @@ $(function(){
 	$.getDataForHor = function(response){
 		
 		var datos = "";
-		//se agrego data-horcod 
+		//se agrego data-horcod y data-dmhcod
 		$.each(response.datos,	function(i , item)
 		{
 			 datos+= "<tr id="+item.hor_cod+">"+
 			  		 "<td>"+item.hor_des+"</td>"+ 
-			  		 "<td> <input type='checkbox' id='check"+i+"' data-horcod="+item.hor_cod+" data-dmhcod=''></td>"+
+			  		 "<td> <input type='checkbox' id='check"+i+"' data-horcod="+item.hor_cod+" data-dmhcod='0'></td>"+
 			  		 "</tr>";				
 		});
 		$('#bodyTbAsig').html(datos);
 	};
 
 	//llamada ComboBox Especialidad
-	$.post("/misitio/cespecialidad/get/",$.getDataForCmbEsp);
+	$.post("/sgcm/cespecialidad/get/",$.getDataForCmbEsp);
 	//llamada tabla asignar Horarios
-	$.post("/misitio/chorario/get/",$.getDataForHor);
+	$.post("/sgcm/chorario/get/",$.getDataForHor);
 
 	//*************************************************************************************************************
 
@@ -114,14 +116,14 @@ $(function(){
 		var contador = 0;
 		for (var i = 0 ; i < $(rows).length ; i++)
 		{
-			if ($('#check'+i).is(':checked') && $('#check'+i).attr('data-dmhcod') === "" ) // si esta check y data-dmhcod vacio
+			if ($('#check'+i).is(':checked') && $('#check'+i).attr('data-dmhcod') === "0" ) // si esta check y data-dmhcod vacio
 			{
 				//$('#check'+i).prop("checked",false); //unchecked
 				contador++;
 				var hor_cod = $(rows)[i].id;
 				$.ajax({
 					type: "POST",
-					url: "/misitio/cdmh/save/", 
+					url: "/sgcm/cdmh/save/", 
 					dataType: 'json', 
 					data:{
 							"dmh_med_cod" : med_cod_global,
@@ -143,15 +145,20 @@ $(function(){
 			$('#med_eml').val("");
 			$('#med_tel').val("");
 		}
+		else
+		{
+			$.notify("No ha asignado ninguna hora","error");
+		}
 	});
 
+	//Eliminar Una Asignacion 
 	$.eliminar = function(td){
 		var med_cod = $(td).parent().attr('data-medcod'); // se puede agregar data-"cualquier cosa" a un tr awesome.
 		var esp_cod = $(td).parent().attr('data-espcod'); 
 		
 		$.ajax({
 			type: "POST",
-			url: "/misitio/cdmh/delete/", 
+			url: "/sgcm/cdmh/delete/", 
 			data: {
 					"med_cod" : med_cod,
 					"esp_cod" : esp_cod},
@@ -168,12 +175,15 @@ $(function(){
 		});
 	};
 
+	//Editar una Asignacion
 	$.editar = function(td)
 	{
 		flag = 1;
+		$('#cmbEsp').prop('disabled',true); //deshabilita el combo
 		med_cod_global = $(td).parent().attr('data-medcod');
 		var esp_cod = $(td).parent().attr('data-espcod');
-		$.post("/misitio/cdmh/searchHorario/", 
+		$('#myModalLabel').html("Horario de "+$(td).parent().children()[1].textContent);
+		$.post("/sgcm/cdmh/searchHorario/", 
 				{"med_cod" : med_cod_global,
 				 "esp_cod" : esp_cod},
 				 function(response){
@@ -185,7 +195,7 @@ $(function(){
 				 			for (var i=0 ; i < $('#bodyTbAsig >tr').length ; i++)
 				 			{
 				 				if( $("#check"+i).attr('data-horcod') == value.hor_cod)// si es igual al hor_cod activa el checkbox y establece data-dmhcod
-				 				{
+				 				{				 					
 				 					$('#check'+i).prop("checked",true);
 				 					$('#check'+i).attr("data-dmhcod",value.dmh_cod);
 				 				}
@@ -234,7 +244,7 @@ $(function(){
 	$('#tbAsig').DataTable({
 		ordering: true,
 		"ajax":{
-			"url": "/misitio/cdmh/get/",
+			"url": "/sgcm/cdmh/get/",
 			"dataSrc": "datos"
 		},
 		"columns":[{data:"med_ced"},{data: "medico"}, {data:"esp_des"},{data:"esp_cod"},{data:"med_cod"}],
@@ -269,8 +279,46 @@ $(function(){
 			if($('#check'+i).is(':checked'))
 			{
 				$('#check'+i).prop("checked",false); //unchecked
+				$('#check'+i).attr('data-dmhcod',0); //detalle_medico_cod a cero
 			}
 		}
+	});
+
+	//Click en el boton Asignar
+	$('#btnAsig').click(function(){
+		$('#cmbEsp').prop('disabled',false);
+		$('#myModalLabel').html("Asignar");
+
+	});
+
+	//Evento que controla el change en un select, de esta manera porque todavia no esta creado el select 
+	$('#modalAsignar').on("change","select",function(){
+		var esp_cod = $(this).val();
+		$.ajax({
+					type: "POST",
+					url: "/sgcm/cdmh/searchHorario/",
+					dataType: 'json',
+					data: {
+							"med_cod" : med_cod_global,
+							"esp_cod" : esp_cod
+					},
+					success: function(response){
+						if(response.datos.length !== 0)
+						{
+							$.notify("Ya existen horarios asignados para este Medico en esta Especialidad","error");
+							$('#btnGuardar').prop('disabled',true);
+						}
+						else
+						{
+							$('#btnGuardar').prop('disabled',false);	
+						}
+						
+					},
+					error: function(response)
+					{
+						$.notify("error","error");
+					}				
+				});
 	});
 
 	//Controla el evento change en un checkbox
@@ -282,7 +330,7 @@ $(function(){
 				var dmh_cod = $(this).attr('data-dmhcod');
 				$.ajax({
 					type: "POST",
-					url: "/misitio/cdmh/deleteCustom/",
+					url: "/sgcm/cdmh/deleteCustom/",
 					dataType: 'json',
 					data: {"dmh_cod" : dmh_cod},
 					success: function(response){
@@ -297,29 +345,7 @@ $(function(){
 			}
 		}
 
-	$(document).on('change' , '[type=select]',function(e){
-		var esp_cod = $(this).val();
-		$.ajax({
-					type: "POST",
-					url: "/misitio/cdmh/searchHorario/",
-					dataType: 'json',
-					data: {
-							"med_cod" : med_cod_global,
-							"esp_cod" : esp_cod
-					},
-					success: function(response){
-						if(response.datos !== null)
-						{
-							$.notify("Ya existen horarios asignados para este Medico en esta Especialidad","error");
-						}
-						
-					},
-					error: function(response)
-					{
-						$.notify("error","error");
-					}				
-				});
-	});
+
 });
 
 });//fin js

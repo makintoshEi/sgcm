@@ -7,11 +7,17 @@ $(function(){
 		//console.log('pasa');
 		$.ajax({
 			type:"POST",
-			url: "/misitio/cusuario/save/",
+			url: "/sgcm/cusuario/save/",
 			dataType: 'json',
 			data:$(this).serialize(),
 			success: function(response){
 				$.notify("Guardado Correctamente","success");
+				$('#usu_ced').val("");
+				$('#usu_nom').val("");
+				$('#usu_ape').val("");
+				$('#usu_dir').val("");
+				$('#usu_eml').val("");
+				$('#usu_pas').val("");
 			},
 
 			error: function(){
@@ -23,30 +29,28 @@ $(function(){
 
 	var btnsOpTblModels = "<button style='border: 0; background: transparent' data-target='#modalUsuario' data-toggle='modal' onclick='$.editarModal($(this).parent())'>"+
 							"<img src='/sich/static/img/edit.png' title='Editar'>"+
-						  "</button>"+
-						  "<button style='border: 0; background: transparent' onclick='$.eliminar($(this).parent())'>"+
-							"<img src='/sich/static/img/delete.png' title='Eliminar'>"+
 						  "</button>";
 
-	$.renderizeRow = function( nRow, aData, iDataIndex ) {
-		
+	$.renderizeRow = function( nRow, aData, iDataIndex )
+	{
 		if(aData['usu_est'] == 't')
 		{
-			$(nRow).append("<td class='text-center'>"+
-							"<button type='button' class='btn btn-danger' onclick='$.activar($(this).parent());' id='btnActivar'>"+
-						  	"Desactivar"+
-						  "</button></td>");
+			$(nRow).append(	"<td class='text-center'>"+
+							"<input type='checkbox' id='check"+iDataIndex+"'>"+
+						  	"</td>");
+			$('#check'+iDataIndex).prop("checked",true);
 		}
 		else
 		{
-			$(nRow).append("<td class='text-center'>"+
-							"<button type='button' class='btn btn-success' onclick='$.activar($(this).parent());' id='btnActivar'>"+
-						  	"Activar"+
-						  "</button></td>");	
+			$(nRow).append(	"<td class='text-center'>"+
+							"<input type='checkbox' id='check"+iDataIndex+"' >"+
+							"</td>");	
 		}
 		
 		$(nRow).append("<td class='text-center'>"+btnsOpTblModels+"</td>");
-		$(nRow).attr('id',aData['usu_cod']); // 
+		$(nRow).attr('id',aData['usu_cod']); //codigo
+		$(nRow).attr('data-usudir',aData['usu_dir']);
+		$(nRow).attr('data-tipcod',aData['tip_cod']);
 	};
 	
 	var lngEsp = {
@@ -73,7 +77,7 @@ $(function(){
 	$('#tbUsuario').DataTable({
 		ordering: true,
 		"ajax":{
-			"url": "/misitio/cusuario/get/",
+			"url": "/sgcm/cusuario/get/",
 			"dataSrc": "datos"
 		},
 		"columns":[{data:"usu_ced"},{data: "usu_nom"}, {data:"usu_ape"},{data:"usu_eml"},{data:"tipo"},{data:"usu_dir"}],
@@ -98,7 +102,7 @@ $(function(){
 		var cedula = $(td).parent().children()[0].textContent; //cedula
 		$.ajax({
 			type: "POST",
-			url: "/misitio/cusuario/delete/", 
+			url: "/sgcm/cusuario/delete/", 
 			data: {"id":cedula},
 			dataType: 'json',
 			success: function(response){
@@ -119,7 +123,7 @@ $(function(){
 		var cedula = $(td).parent().children()[0].textContent; //cedula
 		$.ajax({
 			type: "POST",
-			url: "/misitio/cusuario/activar/", 
+			url: "/sgcm/cusuario/activar/", 
 			dataType: 'json',
 			data: {"id":cedula},			
 			success: function(response){
@@ -134,31 +138,21 @@ $(function(){
 
 	$.editarModal = function(td)
 	{
-		var tr = $(td).parent().children();
-		var ced = tr[0].textContent;
-		var nom = tr[1].textContent;
-		var ape = tr[2].textContent;
-		//var dir = tr[3].textContent;
-		var eml = tr[3].textContent;
+		var trChildren 	= $(td).parent().children();
+		var ced 		= trChildren[0].textContent;
+		var nom 		= trChildren[1].textContent;
+		var ape 		= trChildren[2].textContent;
+		var dir 		= $(td).parent().attr('data-usudir');
+		var eml 		= trChildren[3].textContent;
 		//var pas = tr[5].textContent;
-		var est = tr[4].textContent;
-		var tip = tr[5].textContent;
-		var tip_user='';
-		if(tip == 'ADMINISTRADOR'){
-			tip_user='1';
-		}else{
-			if(tip == 'USUARIO'){
-				tip_user='2';
-			}else{
-				if(tip == 'MEDICO'){
-					tip_user='3';
-				}
-			}
-		}
+		var est 		= trChildren[4].textContent;
+		var tip 		= trChildren[5].textContent;
+		var tip_user	= $(td).parent().attr('data-tipcod');
+		
 		$('#myModalLabel').html("Editar");
 		$('#txtnombre2').val(nom);
 		$('#txtapellido2').val(ape);
-		//$('#txtdireccion2').val(dir);
+		$('#txtdireccion2').val(dir);
 		$('#txtemail2').val(eml);
 		//$('#txtpassword2').val(pas);
 		$('#selectUser2').val(tip_user);
@@ -178,7 +172,7 @@ $(function(){
 					"password": $('#txtpassword2').val(), 
 					"tipo": $('#selectUser2').val()
 					},
-			url: "/misitio/cusuario/update/",
+			url: "/sgcm/cusuario/update/",
 			dataType: 'json',
 			
 			success: function(response){
@@ -195,7 +189,7 @@ $(function(){
 	});
 			
 	$('#modalUsuario').bind('shown.bs.modal' , function(){
-		nom.focus();
+		txtnombre2.focus();
 	});
 	
 });

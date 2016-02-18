@@ -62,7 +62,7 @@
 		                                <th class="text-center" colspan="2">Acción</th>
 		                            </tr>
 		                        </thead>
-		                        <tbody id="tblBody" class="text-center">
+		                        <tbody id="tblBody" class="text-justify">
 		                            
 		                        </tbody>
 		                    </table>

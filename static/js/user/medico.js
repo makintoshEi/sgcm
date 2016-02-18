@@ -4,12 +4,18 @@ $(function(){
 		event.preventDefault();
 		$.ajax({
 			type:"POST",
-			url: "/misitio/cmedico/save/",
+			url: "/sgcm/cmedico/save/",
 			dataType: 'json',
 			data:$(this).serialize(),
 			
 			success: function(response){
 				$.notify("Guardado Correctamente","success");
+				$('#med_ced').val("");
+				$('#med_nom').val("");
+				$('#med_ape').val("");
+				$('#med_dir').val("");
+				$('#med_tel').val("");
+				$('#med_eml').val("");
 			},
 
 			error: function(){
@@ -34,7 +40,7 @@ $(function(){
 	//Llenar tabla de datos
 	//Funcion que carga los datos
 	$.fnTbl('#tbMedico',
-			"/misitio/cmedico/get/",
+			"/sgcm/cmedico/get/",
 			[	{data:"med_ced"},
 				{data:"med_nom"},
 				{data:"med_ape"},
@@ -56,7 +62,7 @@ $(function(){
 		$.ajax({
 			type: "POST",
 			data: {"med_ced":med_ced,"med_e":med_e},
-			url: "/misitio/cmedico/delete/", 
+			url: "/sgcm/cmedico/delete/", 
 			dataType: 'json',
 			success: function(response){
 				event.preventDefault();
@@ -101,7 +107,7 @@ $(function(){
 					"med_tel": $('#mmed_tel').val(),
 					"med_eml": $('#mmed_eml').val()
 					},
-			url: "/misitio/cmedico/update/",
+			url: "/sgcm/cmedico/update/",
 			dataType: 'json',			
 			
 			success: function(response){

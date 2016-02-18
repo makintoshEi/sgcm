@@ -16,7 +16,7 @@
 		public function start()
 		{
 			$this->load->view('menu');
-			$this->load->view('vUsuario');
+			$this->load->view('vusuario');
 		}
 		
 		public function save()
@@ -24,17 +24,17 @@
 			if ($this->input->is_ajax_request())
 			{
 				$data = array(
-				'usu_ced' 	=> $this->input->post('txtcedula'),
-				'usu_nom' 	=> $this->input->post('txtnombre'),
-				'usu_ape' 	=> $this->input->post('txtapellido'),
-				'usu_dir'	=> $this->input->post('txtdireccion'),
-				'usu_eml'	=> $this->input->post('txtemail'),
-				'usu_pas' 	=> $this->input->post('txtpassword'),
+				'usu_ced' 	=> $this->input->post('usu_ced'),
+				'usu_nom' 	=> $this->input->post('usu_nom'),
+				'usu_ape' 	=> $this->input->post('usu_ape'),
+				'usu_dir'	=> $this->input->post('usu_dir'),
+				'usu_eml'	=> $this->input->post('usu_eml'),
+				'usu_pas' 	=> $this->input->post('usu_pas'),
 				'usu_tip_cod' 	=> $this->input->post('selectUser'),
 				'usu_est' 	=> TRUE,
 				);
 
-				$response = $this->mregistro_usuario->save($data);
+				$response = $this->musuario->save($data);
 				echo json_encode($response);
 			}
 			else

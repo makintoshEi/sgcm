@@ -4,7 +4,7 @@ $(function(){
 		event.preventDefault(); // no permite recarga
 		$.ajax({
 			type: "POST",
-			url: "/misitio/chorario/save/",
+			url: "/sgcm/chorario/save/",
 			dataType: 'json',
 			data: $(this).serialize(),
 			success: function(response){
@@ -33,7 +33,7 @@ $(function(){
 	{
 		$.ajax({
 			type: "POST",
-			url: "/misitio/chorario/delete/", 
+			url: "/sgcm/chorario/delete/", 
 			data: {"hor_cod":$(td).parent().attr('id')},
 			dataType: 'json',
 			success: function(response){
@@ -64,7 +64,7 @@ $(function(){
 	//Llenar tabla de datos
 	//Funcion que carga los datos
 	$.fnTbl('#tbHorario',
-			"/misitio/chorario/get/",
+			"/sgcm/chorario/get/",
 			[{data:"hor_cod",},
 			 {data:"hor_des"}
 			 ],
@@ -84,7 +84,7 @@ $(function(){
 					"hor_cod":$('#txtId').val() , 
 					"hor_des":$('#mhor_des').val()
 				},
-			url: "/misitio/chorario/update/",
+			url: "/sgcm/chorario/update/",
 			dataType: 'json',
 			
 			success: function(response){

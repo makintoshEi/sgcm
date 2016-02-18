@@ -5,7 +5,7 @@ $(function(){
 		//console.log('pasa');
 		$.ajax({
 			type:"POST",
-			url: "/misitio/cregistro_usuario/save/",
+			url: "/sgcm/cregistro_usuario/save/",
 			dataType: 'json',
 			data:$(this).serialize(),
 			success: function(response){

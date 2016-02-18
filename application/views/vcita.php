@@ -1,4 +1,4 @@
-<script src="<?php echo base_url()?>static/js/user/especialidad.js"></script>
+<script src="<?php echo base_url()?>static/js/user/cita.js"></script>
     
     <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -12,7 +12,7 @@
                     <div class="panel-heading panel-heading-custom">
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                        CREAR ESPECIALIDAD</a>
+                        CREAR CITA</a>
                       </h4>
                     </div>
                     <div id="collapse1" class="panel-collapse collapse in">
@@ -20,20 +20,31 @@
                       <div class="panel-body">
 
                         <div class="row">
-                        <div id="divFrmClient" class="col-md-6 col-md-offset-3" style="border: 1px solid #ccc; padding:10px 35px 40px 35px;background-color:#FFF;"> 
+                        <div id="divFrmClient" class="col-md-8 col-md-offset-2" style="border: 1px solid #ccc; padding:10px 35px 40px 35px;background-color:#FFF;"> 
                             <form id="frmEsp">
                                 <fieldset class="scheduler-border">
-                                  <legend class="scheduler-border">Nueva Especialidad</legend>         
+                                  <legend class="scheduler-border">Nueva Cita</legend>         
                                   
                                   <div class="form-group">
                                     <label for="txtName">Especialidad:</label>
-                                    <input type="text" required="true" class="form-control" id="esp_des" name="esp_des" placeholder="Ingrese Especialidad"/>
+                                    <select class="form-control" id="cmbEsp" name="cmbEsp" style="font-size: 12px"></select>
+
                                   </div>
                                 </fieldset>  
-                        
-                              <div class="row">
-                                  <div align="center">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                      <table data-order='[[ 0, "asc" ]]' class="table table-hovered table-bordered" cellspacing="0" width="100%" id="tbCita">
+                                          <thead>
+                                              <tr>
+                                                  <th class="text-center">Cedula</th>
+                                                  <th class="text-center">Medico</th>
+                                                   <th class="text-center">Acción</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id="tblBody" class="text-justify">
+                                              
+                                          </tbody>
+                                      </table>
                                   </div>
                               </div>
                             </form>
@@ -44,37 +55,7 @@
 
                     </div>
                   </div>
-                  <div class="panel panel-primary">
-                    <div class="panel-heading panel-heading-custom">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" id="ltEspecialidad">
-                        LISTAR ESPECIALIDAD</a>
-                      </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                      
-                      <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-md-10">
-                                <table data-order='[[ 0, "asc" ]]' class="table table-hovered table-bordered" cellspacing="0" width="100%" id="tbEspecialidad">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Codigo</th>
-                                            <th class="text-center">Descripcion</th>
-                                             <th class="text-center" colspan="2">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblBody" class="text-justify">
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+                  
   
                 </div>
               <!-- ************************************* ACORDIONES ****************************-->

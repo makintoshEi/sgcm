@@ -23,32 +23,32 @@
                                 <form id="frmUsu_save">
                                     <!--*************************FORMULARIO*************************** -->
                                     <fieldset class="scheduler-border">
-                                      <legend class="scheduler-border">Datos</legend>         
+                                      <legend class="scheduler-border">Nuevo Usuario</legend>         
                                       <div class="form-group">
-                                        <label for="txtName">C.I./R.U.C.:</label>
-                                        <input type="text" required="true" class="form-control" id="txtCedula" name="txtcedula" placeholder="Ingrese C.I./R.U.C." maxlength="13"/>
+                                        <label for="txtName">C.I:</label>
+                                        <input type="text" required="true" class="form-control" id="usu_ced" name="usu_ced" placeholder="Ingrese C.I." maxlength="10"/>
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Nombre:</label>
-                                        <input type="text" required="true" class="form-control" id="txtNombre" name="txtnombre" placeholder="Ingrese Nombre"/>
+                                        <input type="text" required="true" class="form-control" id="usu_nom" name="usu_nom" placeholder="Ingrese Nombre"/>
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Apellido:</label>
-                                        <input type="text" required="true" class="form-control" id="txtApellido" name="txtapellido" placeholder="Ingrese Apellido"/>
+                                        <input type="text" required="true" class="form-control" id="usu_ape" name="usu_ape" placeholder="Ingrese Apellido"/>
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Dirección:</label>
-                                        <input type="text" required="true" class="form-control" id="txtdireccion" name="txtdireccion" placeholder="Ingrese Dirección"/>
+                                        <input type="text" class="form-control" id="usu_dir" name="usu_dir" placeholder="Ingrese Dirección"/>
                                       </div>
 
                                       <div class="form-group">
                                         <label for="txtName">E-mail:</label>
-                                        <input type="text"  class="form-control" id="txtemail" name="txtemail" placeholder="Ingrese Email"/>
+                                        <input type="text"  required="true" class="form-control" id="usu_eml" name="usu_eml" placeholder="Ingrese Email"/>
                                       </div>
 
                                       <div class="form-group">
                                         <label for="txtName">Password:</label>
-                                        <input type="password"  class="form-control" id="txtpassword" name="txtpassword" placeholder=""/>
+                                        <input type="password"  class="form-control" id="usu_pas" name="usu_pas" placeholder=""/>
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Tipo Usuario:</label>
@@ -77,7 +77,7 @@
                   <div class="panel panel-primary">
                     <div class="panel-heading panel-heading-custom">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" id="ltUsuario">
                         LISTAR USUARIO</a>
                       </h4>
                     </div>
@@ -99,7 +99,7 @@
                                             <th class="text-center">Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tblBody" class="text-center">
+                                    <tbody id="tblBody" class="text-justify">
                                         
                                     </tbody>
                                 </table>

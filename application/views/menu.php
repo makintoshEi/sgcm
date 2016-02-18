@@ -56,7 +56,7 @@
                     <a href="<?php echo base_url()?>cdmh/start">Asignar Horario</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url()?>cfactura/start">Factura</a>
+                    <a href="<?php echo base_url()?>ccita/start">Cita</a>
                 </li>         
             </ul>
         </div>

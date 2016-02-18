@@ -4,7 +4,7 @@ $(function(){
 		event.preventDefault();
 		$.ajax({
 			type:"POST",
-			url: "/misitio/cespecialidad/save/",
+			url: "/sgcm/cespecialidad/save/",
 			dataType: 'json',
 			data:$(this).serialize(),
 			success: function(response){
@@ -34,7 +34,7 @@ $(function(){
 	//Llenar tabla de datos
 	//Funcion que carga los datos
 	$.fnTbl('#tbEspecialidad',
-			"/misitio/cespecialidad/get/",
+			"/sgcm/cespecialidad/get/",
 			[	{data:"esp_cod"},
 				{data:"esp_des"}
 			],
@@ -64,7 +64,7 @@ $(function(){
 					"esp_cod":$('#txtId').val() , 
 					"esp_des": $('#mesp_des').val()
 				  },				  
-			url: "/misitio/cespecialidad/update/",
+			url: "/sgcm/cespecialidad/update/",
 			dataType: 'json',
 			
 			success: function(response){
@@ -84,7 +84,7 @@ $(function(){
 		var cedula = $(td).parent().children()[0].textContent; //cedula
 		$.ajax({
 			type: "POST",
-			url: "/misitio/cespecialidad/delete/", 
+			url: "/sgcm/cespecialidad/delete/", 
 			data: {"id":cedula},
 			dataType: 'json',
 			success: function(response){

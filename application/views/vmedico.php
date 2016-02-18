@@ -22,7 +22,7 @@
                                 <form id="frmMed">
                                     <!--*************************FORMULARIO*************************** -->
                                     <fieldset class="scheduler-border">
-                                      <legend class="scheduler-border">Datos</legend>         
+                                      <legend class="scheduler-border">Nuevo Medico</legend>         
                                       <div class="form-group">
                                         <label for="txtName">Cedula:</label>
                                         <input type="text" required="true" class="form-control" id="med_ced" name="med_ced" placeholder="Ingrese C.I" maxlength="10"/>
@@ -41,7 +41,7 @@
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Telefono:</label>
-                                        <input type="text"  class="form-control" id="med_tel" name="med_tel" placeholder="Ingrese Telefono"/>
+                                        <input type="text"  class="form-control" id="med_tel" name="med_tel" placeholder="Ingrese Telefono" maxlength="10" />
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Email:</label>
@@ -86,7 +86,7 @@
                                             <th class="text-center" colspan="2">Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tblBody" class="text-center">
+                                    <tbody id="tblBody" class="text-justify">
                                         
                                     </tbody>
                                 </table>
