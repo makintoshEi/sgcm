@@ -19,7 +19,6 @@ $(function(){
 				$('#usu_eml').val("");
 				$('#usu_pas').val("");
 			},
-
 			error: function(){
 				$.notify("Error","error");
 			}
@@ -28,29 +27,31 @@ $(function(){
 	});
 
 	var btnsOpTblModels = "<button style='border: 0; background: transparent' data-target='#modalUsuario' data-toggle='modal' onclick='$.editarModal($(this).parent())'>"+
-							"<img src='/sich/static/img/edit.png' title='Editar'>"+
+							"<img src='/sgcm/static/img/edit.png' title='Editar'>"+
 						  "</button>";
 
 	$.renderizeRow = function( nRow, aData, iDataIndex )
 	{
 		if(aData['usu_est'] == 't')
 		{
-			$(nRow).append(	"<td class='text-center'>"+
-							"<input type='checkbox' id='check"+iDataIndex+"'>"+
-						  	"</td>");
-			$('#check'+iDataIndex).prop("checked",true);
+			$(nRow).append("<td class='text-center'>"+
+							"<button type='button' class='btn btn-danger' onclick='$.eliminar($(this).parent());' id='btnEliminar'>"+
+						  	"Desactivar"+
+						  "</button></td>");
 		}
 		else
 		{
-			$(nRow).append(	"<td class='text-center'>"+
-							"<input type='checkbox' id='check"+iDataIndex+"' >"+
-							"</td>");	
+			$(nRow).append("<td class='text-center'>"+
+							"<button type='button' class='btn btn-success' onclick='$.activar($(this).parent());' id='btnActivar'>"+
+						  	"Activar"+
+						  "</button></td>");	
 		}
 		
 		$(nRow).append("<td class='text-center'>"+btnsOpTblModels+"</td>");
 		$(nRow).attr('id',aData['usu_cod']); //codigo
 		$(nRow).attr('data-usudir',aData['usu_dir']);
 		$(nRow).attr('data-tipcod',aData['tip_cod']);
+		$(nRow).attr('data-usupas',aData['usu_pas']);
 	};
 	
 	var lngEsp = {
@@ -144,7 +145,7 @@ $(function(){
 		var ape 		= trChildren[2].textContent;
 		var dir 		= $(td).parent().attr('data-usudir');
 		var eml 		= trChildren[3].textContent;
-		//var pas = tr[5].textContent;
+		var pas 		= $(td).parent().attr('data-usupas');
 		var est 		= trChildren[4].textContent;
 		var tip 		= trChildren[5].textContent;
 		var tip_user	= $(td).parent().attr('data-tipcod');
@@ -154,7 +155,7 @@ $(function(){
 		$('#txtapellido2').val(ape);
 		$('#txtdireccion2').val(dir);
 		$('#txtemail2').val(eml);
-		//$('#txtpassword2').val(pas);
+		$('#txtpassword2').val(pas);
 		$('#selectUser2').val(tip_user);
 		$('#txtcedula2').val(ced);
 	};

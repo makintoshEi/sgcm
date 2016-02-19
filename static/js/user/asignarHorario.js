@@ -1,6 +1,6 @@
 $(function(){
 	
-	///********************************* FUNCIONES PARA EL AUTOCOMPLETADO ************************************
+	//********************************* FUNCIONES PARA EL AUTOCOMPLETADO ************************************
 
 	var keywords= [] , keymedico =[];
 	var med_cod_global, flag=0;
@@ -102,10 +102,7 @@ $(function(){
 	//llamada tabla asignar Horarios
 	$.post("/sgcm/chorario/get/",$.getDataForHor);
 
-	//*************************************************************************************************************
-
-	
-	// CRUD ASIGNACIONES
+//******************************************CRUD ASIGNACIONES*******************************************************************
 
 	//guardar a detalle_medico_horario
 
@@ -205,13 +202,13 @@ $(function(){
 				 	}
 		},"json");
 	};
-//********************************************************************************************************************
+//***************************************************CARGAR TABLAS*****************************************************************
 
 	var btnsOpTblModels = "<button style='border: 0; background: transparent' data-target='#modalAsignar' data-toggle='modal' onclick='$.editar($(this).parent());'>"+
-						  "<img src='/sich/static/img/edit.png' title='Editar'>"+
+						  "<img src='/sgcm/static/img/edit.png' title='Editar'>"+
 						  "</button>"+
 						  "<button style='border: 0; background: transparent' onclick='$.eliminar($(this).parent())'>"+
-							"<img src='/misitio/static/img/delete.png' title='Eliminar'>"+
+							"<img src='/sgcm/static/img/delete.png' title='Eliminar'>"+
 						  "</button>";
 
 	var lngEsp = {
@@ -344,8 +341,6 @@ $(function(){
 				});
 			}
 		}
-
-
-});
+	});
 
 });//fin js

@@ -50,10 +50,10 @@ $(function(){
 
 
 	var btnsOpTblModels = "<button style='border: 0; background: transparent' data-target='#modalHorario' data-toggle='modal' onclick='$.editarModal($(this).parent())'>"+
-							"<img src='/misitio/static/img/edit.png' title='Editar'>"+
+							"<img src='/sgcm/static/img/edit.png' title='Editar'>"+
 						  "</button>"+
 						  "<button style='border: 0; background: transparent' onclick='$.eliminar($(this).parent())'>"+
-							"<img src='/misitio/static/img/delete.png' title='Eliminar'>"+
+							"<img src='/sgcm/static/img/delete.png' title='Eliminar'>"+
 						  "</button>";
 
 	$.renderizeRow = function( nRow, aData, iDataIndex ) {

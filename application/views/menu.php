@@ -36,10 +36,16 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        SGCM
+                    <a href="<?php echo base_url()?>">
+                        SGCM 
                     </a>
                 </li>
+                <?php if($this->session->userdata('login') == TRUE): ?>
+                <li class="aligncenter">
+                    <span><a href="#"><h4>Bienvenido <?php echo $this->session->userdata('nombre') ?></h4></a></span>
+                </li>
+                <?php endif; ?>
+                <?php if($this->session->userdata('tipo') == '1'): ?>
                 <li>
                     <a href="<?php echo base_url()?>cusuario/start">Usuario</a>
                 </li>
@@ -57,7 +63,19 @@
                 </li>
                 <li>
                     <a href="<?php echo base_url()?>ccita/start">Cita</a>
-                </li>         
+                </li>
+                <?php endif; ?>
+                <?php if($this->session->userdata('tipo') == '2'): ?>
+                <li>
+                    <a href="<?php echo base_url()?>ccita/start">Cita</a>
+                </li>
+                <?php endif; ?>
+                
+                <?php if($this->session->userdata('login') == TRUE): ?>
+                <li>
+                    <a href="<?php echo base_url()?>clogin/logout">Cerrar Session</a>
+                </li>
+                <?php endif; ?>          
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
