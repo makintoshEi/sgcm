@@ -42,6 +42,11 @@ class Musuario extends CI_Model
 	{
 		return $this->db->update('usuario',$data,$where);
 	}
+
+	public function customQuery($sql)
+	{
+		return $this->db->query($sql)->result_array();
+	}
 }
 
  ?>

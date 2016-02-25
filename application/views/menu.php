@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url()?>static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>static/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>static/css/simple-sidebar.css" rel="stylesheet">
@@ -45,6 +45,7 @@
                     <span><a href="#"><h4>Bienvenido <?php echo $this->session->userdata('nombre') ?></h4></a></span>
                 </li>
                 <?php endif; ?>
+                
                 <?php if($this->session->userdata('tipo') == '1'): ?>
                 <li>
                     <a href="<?php echo base_url()?>cusuario/start">Usuario</a>

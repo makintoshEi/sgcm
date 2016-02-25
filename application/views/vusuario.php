@@ -40,15 +40,15 @@
                                         <label for="txtName">Dirección:</label>
                                         <input type="text" class="form-control" id="usu_dir" name="usu_dir" placeholder="Ingrese Dirección"/>
                                       </div>
-
                                       <div class="form-group">
-                                        <label for="txtName">E-mail:</label>
-                                        <input type="text"  required="true" class="form-control" id="usu_eml" name="usu_eml" placeholder="Ingrese Email"/>
+                                        <label for="textName">Email</label>
+                                        <input type="text" class="form-control" id="usu_eml" name="usu_eml" value="@" placeholder="Ingrese el Email">
                                       </div>
+                                      
 
                                       <div class="form-group">
                                         <label for="txtName">Password:</label>
-                                        <input type="password"  class="form-control" id="usu_pas" name="usu_pas" placeholder=""/>
+                                        <input type="password"  class="form-control" id="usu_pas" name="usu_pas" value="" placeholder="Ingrese el Password"/>
                                       </div>
                                       <div class="form-group">
                                         <label for="txtName">Tipo Usuario:</label>
@@ -56,7 +56,6 @@
                                                             <option value='-----'>-----</option>
                                                             <option value='1'>Administrador</option>
                                                             <option value='2'>Usuario</option>
-                                                            <option value='3'>Médico</option>
                                                         </select>
                                       </div>
                                     </fieldset>                        
@@ -122,7 +121,7 @@
             <div class="modal fade"  id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" style="width:500px">
                     <div class="modal-content panel panel-primary">
-                        <div class="modal-header panel panel-heading">
+                        <div class="modal-header modal-header-success">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myModalLabel" style="text-align: center;"></h4>
                         </div>                   
@@ -150,7 +149,6 @@
                                 <option value='-----'>-----</option>
                                 <option value='1'>Administrador</option>
                                 <option value='2'>Usuario</option>
-                                <option value='3'>Médico</option>
                             </select>
                         </div>           
                         <div class="modal-footer">

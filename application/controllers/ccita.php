@@ -83,15 +83,13 @@
 				
 		}
 
-		//Obtiene todas las citas
-		public function getCita()
+		public function getTc()
 		{
 			if($this->input->is_ajax_request())
 			{
 				
-				$sql = "SELECT * FROM vista_cita WHERE usu_cod = ? AND cit_est = TRUE";
-				$usu_cod = $this->input->post('usu_cod');
-				$data = $this->mcita->customQueryN($sql,array($usu_cod));
+				$sql = "SELECT MAX(cit_tur)+1 as turno FROM cita";
+				$data = $this->mcita->customQuery($sql,array());
 
 				header('Content-type: application/json; charset=utf-8');
 				echo json_encode(array("datos"=>$data));
@@ -101,7 +99,35 @@
 				exit("Error");
 				show_404();	
 			}
+		}
+
+		//Obtiene todas las citas
+		public function getCita()
+		{
+			if($this->input->is_ajax_request())
+			{				
+				if($this->input->post('tip_usu') == "1")
+				{
+					$sql = "SELECT * FROM vista_cita";
+					$data = $this->mcita->statementSQL($sql);	
+				}
+				else
+				{
+					$sql = "SELECT * FROM vista_cita WHERE usu_cod = ? AND cit_est = TRUE";
+					$usu_cod = $this->input->post('usu_cod');
+					$data = $this->mcita->customQueryN($sql,array($usu_cod));	
+				}
 				
+				
+
+				header('Content-type: application/json; charset=utf-8');
+				echo json_encode(array("datos"=>$data));
+			}
+			else
+			{
+				exit("Error");
+				show_404();	
+			}				
 		}
 
 
@@ -113,7 +139,7 @@
 				'cit_dmh_cod' 	=> $this->input->post('cit_dmh_cod'),
 				'cit_est' 		=> $this->input->post('cit_est'),
 				'cit_fec'		=> $this->input->post('cit_fec'),
-				'cit_usu_cod'	=> $this->session->userdata('usu_cod'),
+				'cit_usu_cod'	=> $this->input->post('usu_cod'),
 				'cit_tur'		=> $this->input->post('cit_tur')
 				);
 
@@ -127,8 +153,21 @@
 			}
 		}
 
+		public function getTurno()
+		{
+			if($this->input->is_ajax_request())
+			{
+				$servicio = "http://localhost:4848/ServicioWeb/get_turno?wsdl";
+				$parametros=array(); //parametros de la llamada
+				$parametros['usuario']="postgres";
+				$parametros['clave']="admin";
+				$client = new SoapClient($servicio, $parametros);
+				$result = $client->getTurno($parametros);//llamamos al métdo que nos interesa con los parámetros
+				header('Content-type: application/json; charset=utf-8');
+				echo json_encode(array("datos"=>$result));
 
-
+			}
+		}
 	}
 
 

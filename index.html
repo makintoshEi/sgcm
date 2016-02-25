@@ -59,17 +59,8 @@
 					<li><a href="#Vision">VISION</a></li>
 					<li><a href="#Servicios">SERVICIOS</a></li>
 					<li><a href="#Desarro">DESARROLLADORES</a></li>
-					<?php if($this->session->userdata('login')){ ?>
-						<?php if($this->session->userdata('tipo') == '1'){ ?>
-							<li><a href="<?= base_url() ?>cmenu">ADMINISTRAR</a></li>
-						<?php }else{ ?>
-							<li><a href="<?= base_url() ?>cmenu">RESERVAR CITA</a></li>
-						<?php } ?>
-						<li><a href="<?= base_url() ?>clogin/logout">Cerrar Sesion</a></li>
-					<?php }else{ ?>
-						<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Iniciar Sesion</a></li>
-					<?php } ?>	
-				
+
+					<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue">Iniciar Sesion</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -326,26 +317,15 @@
 
 
 	 -->  
-
 	<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<h3 class="white">LOGIN</h3>
-				<form id="frmLogin" action="<?= base_url() ?>clogin/" method="POST" class="popup-form" accept-charset="UTF-8" role="form">
-					<div class="form-group">
-						<input type="text" name="txtcedula" id="txtcedula" class="form-control form-white" placeholder="CEDULA">
-						<input type="password" name="txtpassword" id="txtpasssword" class="form-control form-white" placeholder="CONTRASEÑA">
-						
-						<button type="submit" id="btnLogin" class="btn btn-submit">Ingresar</button>
-					</div>
-					<div class="form-group">
-						<a href="<?= base_url()?>cregistro_usuario/start">
-							<input type="button" value="Registrarme"  class="btn btn-default btn-lg">
-						</a>
-					</div>
+				<form action="" class="popup-form">
+					<input type="text" class="form-control form-white" id="usuario" name="usuario" placeholder="USUARIO">
+					<input type="password" class="form-control form-white" id="codigo" name="codigo" placeholder="CONTRASEÑA">
 					
-
-					
+					<button type="submit" id="ingre_usu" name="ingre_usu" class="btn btn-submit">Ingresar</button>
 				</form>
 			</div>
 		</div>

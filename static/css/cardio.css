@@ -137,6 +137,7 @@ header .header-text {
 header .typed {
 	display: inline-block;
 	margin: 0;
+	color: blue;
 }
 
 header .typed-cursor {
@@ -237,7 +238,9 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	color: #00a8ff;
 	background: #fff;
 }
-
+.red {
+	color: red;
+}
 .btn.btn-gray-fill {
 	color: #fff;
 	border-color: #fff;
@@ -387,6 +390,9 @@ section {
 .intro-tables .intro-table .heading {
 	margin: 0;
 	padding: 30px;
+}
+.intro-table-third2 {
+	background-image: url('../img/table-2-hover.jpg');
 }
 
 .intro-tables .intro-table .small-heading {
@@ -998,6 +1004,9 @@ footer .social-footer li:hover a {
 }
 /* Colors */
 
+.black {
+	color: black;
+}
 .white {
 	color: white;
 }

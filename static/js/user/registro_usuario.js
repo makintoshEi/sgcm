@@ -8,8 +8,11 @@ $(function(){
 			url: "/sgcm/cregistro_usuario/save/",
 			dataType: 'json',
 			data:$(this).serialize(),
+
 			success: function(response){
 				$.notify("Guardado Correctamente","success");
+				$(window).attr('location', 'http://localhost/sgcm/');
+				jQuery(window).attr('location', 'http://localhost/sgcm/');
 			},
 
 			error: function(){

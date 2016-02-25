@@ -11,7 +11,7 @@ class Cregistro_usuario extends CI_Controller
 		}
 
 	public function start(){
-		$this->load->view('vRegistro_Usuario');
+		$this->load->view('vreporte');
 	}
 
 	public function save()
@@ -31,6 +31,7 @@ class Cregistro_usuario extends CI_Controller
 
 				$response = $this->mregistro_usuario->save($data);
 				echo json_encode($response);
+				//header("Location:".base_url());
 			}
 			else
 			{
@@ -40,5 +41,9 @@ class Cregistro_usuario extends CI_Controller
 				//show_404();
 			}
 		}
-	
+
+	public function base_url()
+	{
+		$this->load->view('vindex');
+	}
 }

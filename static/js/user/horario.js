@@ -23,7 +23,7 @@ $(function(){
 	$.editarModal = function(td)
 	{
 		var tr = $(td).parent().children();
-		var hor_des = tr[0].textContent;
+		var hor_des = tr[1].textContent;
 		$('#myModalLabel').html("Editar");
 		$('#mhor_des').val(hor_des);
 		$('#txtId').val($(td).parent().attr('id'));
@@ -42,7 +42,7 @@ $(function(){
 			},
 
 			error: function(response){
-				$.notify("Error al eliminar","error");
+				$.notify("El horario esta asignado, NO se puede eliminar","error");
 			}
 
 		});

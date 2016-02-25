@@ -13,7 +13,7 @@
 	    <script src="<?php echo base_url()?>static/js/jquery-1.11.3.min.js"></script>
 	    <script src="<?php echo base_url()?>static/js/header.js"></script>
 	    <script src="<?php echo base_url()?>static/js/alls.js"></script>
-	    <script src="<?php echo base_url()?>static/js/registro_usuario.js"></script>
+	    <script src="<?php echo base_url()?>static/js/user/registro_usuario.js"></script>
 	    <script type="text/javascript" charset="utf8" src="<?php echo base_url()?>static/js/jquery.dataTables.min.js"></script>
 	    <script type="text/javascript" charset="utf8" src="<?php echo base_url()?>static/js/dataTables.bootstrap.js"></script>
 	</head>
@@ -55,20 +55,20 @@
 						                <div class="form-group">
 						                <label class="col-lg-2 control-label">Cedula</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="text" placeholder="Cedula" name="txtcedula" id="txtcedula">
+						                    <input class="form-control" type="text" placeholder="Cedula" name="txtcedula" id="txtcedula" maxlength="10" requerid="true">
 						                </div>
 						            </div>
 						            <div class="row">
 						                <label class="col-lg-2 control-label">Nombres</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="text" placeholder="Nombres" name="txtnombre" id="txtnombre">
+						                    <input class="form-control" type="text" placeholder="Nombres" name="txtnombre" id="txtnombre" requerid="true">
 						                </div> 
 						            </div>
 						            <br>
 						            <div class="row">
 						                <label class="col-lg-2 control-label">Apellidos</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="text" placeholder="Apellidos" name="txtapellido" id="txtapellido">
+						                    <input class="form-control" type="text" placeholder="Apellidos" name="txtapellido" id="txtapellido" requerid="true">
 						                </div>
 						                
 						            </div>
@@ -76,21 +76,21 @@
 						            <div class="row">    
 						                <label class="col-lg-2 control-label">Direccion</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="text" placeholder="Direccion" name="txtdireccion" id="txtdireccion">
+						                    <input class="form-control" type="text" placeholder="Direccion" name="txtdireccion" id="txtdireccion" requerid="true">
 						                </div> 
 						            </div>
 						            <br>
 						            <div class="row"> 
 						                <label class="col-lg-2 control-label">Email</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="email" placeholder="Email" name="txtemail" id="txtemail">
+						                    <input class="form-control" type="email" placeholder="Email" name="txtemail" id="txtemail" requerid="true">
 						                </div>  
 						            </div>
 						            <br>
 						            <div class="row">
 						                <label class="col-lg-2 control-label">Password</label>
 						                <div class="col-lg-5">
-						                    <input class="form-control" type="password" placeholder="Password" name="txtpassword" id="txtpassword">
+						                    <input class="form-control" type="password" placeholder="Password" name="txtpassword" id="txtpassword" requerid="true">
 						                </div>
 						                
 						            </div>

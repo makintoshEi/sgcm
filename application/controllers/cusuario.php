@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
 	* 
@@ -121,6 +121,17 @@
 			}else
 			{
 				echo json_encode($response);
+			}
+		}
+
+		public function getUserByNom()
+		{
+			if($this->input->is_ajax_request())
+			{
+				$sql = "SELECT usu_cod, concat(usu_nom,' ',usu_ape) as usuario FROM vista_usuario";
+				$data = $this->musuario->customQuery($sql);
+				header('Content-type: application/json; charset=utf-8');
+				echo json_encode(array("datos"=>$data));
 			}
 		}
 	}
