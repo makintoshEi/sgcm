@@ -34,7 +34,7 @@
 			}
 			else
 			{
-				exit("No direct scrip");
+				exit("Algo anda mal");
 				show_404();	
 			}
 				
@@ -46,17 +46,18 @@
 			if($this->input->is_ajax_request())
 			{
 				
-				$sql = "SELECT dmh_cod, hor_cod , hor_des FROM vista_asignacion WHERE med_ced = ? AND esp_cod = ? ORDER BY hor_des";
+				$sql = "SELECT dmh_cod, hor_cod, hor_des FROM vista_asignacion WHERE med_ced = ? AND esp_cod = ? AND dmh_cod NOT IN(SELECT cit_dmh_cod FROM cita WHERE cit_fec = ?) ORDER BY hor_des ASC";
 				$med_ced = $this->input->post('med_ced');
 				$esp_cod = $this->input->post('esp_cod');
-				$data = $this->mcita->customQueryN($sql,array($med_ced,$esp_cod));
+				$cit_fec = $this->input->post('cit_fec');
+				$data = $this->mcita->customQueryN($sql,array($med_ced,$esp_cod,$cit_fec));
 
 				header('Content-type: application/json; charset=utf-8');
 				echo json_encode(array("datos"=>$data));
 			}
 			else
 			{
-				exit("No direct scrip");
+				exit("No es una llamada Ajax");
 				show_404();	
 			}
 				

@@ -14,7 +14,7 @@ $(function(){
 		$('#cmbEsp').html(datos);
 	};
 
-	/// LLENA LA TABLA HORARIOS
+	/*
 	$.getDataForHor = function(response){
 		
 		var datos = "";
@@ -68,7 +68,7 @@ $(function(){
 		 }
 
 		$('#bodyTbCita').html(datos);
-	};
+	};*/
 
 	
 	// FUNCION QUE SE EJECUTA AL LLAMAR AL MODAL
@@ -116,23 +116,33 @@ $(function(){
 			});
 	});
 
-	//Evento bind a el control fecha
+	//EVENTO AL CAMBIAR DE FECHA EN EL CONTROL ******************
 	$('#cit_fec').on("change",function(){
 		$.ajax({
 			type: "POST",
 			url: "/sgcm/ccita/getHorarioDisponible/", 
 			data: {			
 					"med_ced" : med_ced_global,
-					"esp_cod" : esp_cod_global
+					"esp_cod" : esp_cod_global,
+					"cit_fec" : $(this).val()
 				},
 			dataType: 'json',
 
 			success: function(response){
-				$.getDataForHor(response);
+				var datos ="";
+				if(response.datos.length > 0)
+				{
+					$.each(response.datos, function(i,item){
+						datos+= "<tr>"+
+				  				"<td>"+item.hor_des+"</td>"+ 
+				  				"<td> <input type='checkbox' id='check"+i+"' data-horcod="+item.hor_cod+" data-dmhcod="+item.dmh_cod+"></td>"+
+				  				"</tr>";
+					});
+					$('#bodyTbCita').html(datos);						
+				}				
 			},
-
 			error: function(response){
-				$.notify("Error al eliminar","error");
+				$.notify("Error al cargar Horario Disponible","error");
 			}
 
 		});

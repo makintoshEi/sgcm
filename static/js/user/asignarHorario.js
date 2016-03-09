@@ -318,13 +318,14 @@ $(function(){
 				});
 	});
 
-	//Controla el evento change en un checkbox
+	//Controla el evento change en un checkbox ----- > ELIMINA SI YA ESTA ASIGNADO AL MEDICO
 	$(document).on('change', '[type=checkbox]', function (e) {
 		if(flag == 1) // si editar
 		{
-			if(	!($(this).is(':checked')) && $(this).attr('data-dmhcod')!== "") //unchecked y tiene data-dmhcod
+			if(	!($(this).is(':checked')) && $(this).attr('data-dmhcod')!== "0") //unchecked y tiene data-dmhcod
 			{
 				var dmh_cod = $(this).attr('data-dmhcod');
+				$(this).attr('data-dmhcod','0');
 				$.ajax({
 					type: "POST",
 					url: "/sgcm/cdmh/deleteCustom/",

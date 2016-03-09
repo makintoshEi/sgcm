@@ -18,8 +18,7 @@
     
 
     <script src="<?php echo base_url()?>static/js/jquery-1.11.3.min.js"></script>
-    <script src="<?php echo base_url()?>static/js/bootstrap.min.js"></script>
-   
+    <script src="<?php echo base_url()?>static/js/bootstrap.min.js"></script>   
     <script src="<?php echo base_url()?>static/js/alls.js"></script>
     <!-- DataTable --> 
     <script type="text/javascript" charset="utf8" src="<?php echo base_url()?>static/js/jquery.dataTables.min.js"></script>
